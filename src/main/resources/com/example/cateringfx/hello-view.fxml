@@ -1,16 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.cateringfx.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cateringfx.MainController">
+   <children>
+      <Label layoutX="233.0" layoutY="37.0" text="MENU DESIGNER">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateField" layoutX="341.0" layoutY="106.0" />
+      <Text layoutX="271.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" AnchorPane.bottomAnchor="641.478515625" AnchorPane.topAnchor="98.521484375">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tbSearch" layoutX="123.0" layoutY="151.0" onKeyReleased="#search" AnchorPane.bottomAnchor="597.0" />
+      <Text layoutX="40.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Text" wrappingWidth="85.685546875" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <CheckBox fx:id="radioMilk" layoutX="452.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Milk" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <CheckBox fx:id="radioNuts" layoutX="512.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Nuts" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <CheckBox fx:id="radioEgg" layoutX="577.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Egg" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <CheckBox fx:id="radioGluten" layoutX="639.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="64.0" text="Gluten" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <TableView fx:id="tbElement" layoutX="40.0" layoutY="205.0" prefHeight="275.0" prefWidth="307.0" AnchorPane.bottomAnchor="290.0" AnchorPane.topAnchor="205.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="141.0" text="Name" />
+          <TableColumn fx:id="colCal" prefWidth="64.0" text="Calories" />
+            <TableColumn fx:id="colCarb" prefWidth="51.0" text="Carbos" />
+            <TableColumn fx:id="colFat" prefWidth="50.0" text="Fat" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tbMenu" layoutX="468.0" layoutY="205.0" prefHeight="275.0" prefWidth="233.0" AnchorPane.bottomAnchor="290.0" AnchorPane.topAnchor="205.0">
+         <columns>
+            <TableColumn fx:id="colName2" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="colDescription" prefWidth="132.0" text="Description" />
+         </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="40.0" layoutY="511.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="470.0" layoutY="511.0" stroke="BLACK" strokeType="INSIDE" width="239.0" />
+      <Button layoutX="379.0" layoutY="304.0" mnemonicParsing="false" onAction="#addAliment" prefHeight="25.0" prefWidth="37.0" text="&gt;&gt;" />
+      <Button layoutX="379.0" layoutY="360.0" mnemonicParsing="false" onAction="#removeAliment" prefHeight="25.0" prefWidth="37.0" text="X" />
+      <Button layoutX="91.0" layoutY="549.0" mnemonicParsing="false" onAction="#newAliment" prefHeight="25.0" prefWidth="91.0" text="New Aliment" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="574.0" />
+      <Button layoutX="93.0" layoutY="639.0" mnemonicParsing="false" onAction="#newDish" prefHeight="25.0" prefWidth="91.0" text="New Dish" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="572.0" />
+      <Button layoutX="288.0" layoutY="585.0" mnemonicParsing="false" onAction="#saveMenu" prefHeight="25.0" prefWidth="133.0" text="Save Menu" />
+      <Button layoutX="523.0" layoutY="675.0" mnemonicParsing="false" onAction="#setLimits" prefHeight="25.0" prefWidth="133.0" text="Set Limits" />
+      <CheckBox fx:id="checkgGutem" layoutX="647.0" layoutY="649.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" text="Gluten" AnchorPane.topAnchor="649.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkEgg" layoutX="593.0" layoutY="649.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Egg" AnchorPane.topAnchor="649.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkNuts" layoutX="543.0" layoutY="649.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Nuts" AnchorPane.topAnchor="649.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkMilk" layoutX="482.0" layoutY="649.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Milk" AnchorPane.topAnchor="649.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="533.0" layoutY="520.0" prefHeight="41.0" prefWidth="121.0" text="MENU DESIGNER" textAlignment="RIGHT">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text layoutX="502.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calories" AnchorPane.leftAnchor="502.0" />
+      <Text layoutX="502.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carbohydrates" AnchorPane.leftAnchor="502.0" />
+      <Text layoutX="502.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fat" AnchorPane.leftAnchor="502.0" />
+      <Text layoutX="644.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="644.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="644.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>
