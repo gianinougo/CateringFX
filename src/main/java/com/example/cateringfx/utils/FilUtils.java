@@ -70,16 +70,6 @@ public class FilUtils {
         return list;
     }
 
-    public static void storeAliment(Aliment a){
-
-    }
-
-    public static  void storeDish(Dish d){
-
-    }
-
-    public static void storeMenu(Menu m){
-    }
 
 
 
