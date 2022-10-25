@@ -70,6 +70,17 @@ public class FilUtils {
         return list;
     }
 
+    public static void storeAliment(Aliment a){
+        //to store a new Aliment defined in the application.
+    }
+
+    public static  void storeDish(Dish d){
+        //to store a new Dish defined in the
+        //application.
+    }
+
+    public static void storeMenu(Menu m){
+    }
 
 
 

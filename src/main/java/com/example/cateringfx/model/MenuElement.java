@@ -1,6 +1,6 @@
 package com.example.cateringfx.model;
 
-public abstract interface MenuElement {
+public interface MenuElement {
 
     public double getCalories();
     public double getCarbohydrates();

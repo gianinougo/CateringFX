@@ -1,5 +1,6 @@
 package com.example.cateringfx.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dish implements MenuElement, Nameable{
@@ -8,15 +9,10 @@ public class Dish implements MenuElement, Nameable{
     private String description;
     private List<Ingredient> ingredients;
 
-    public Dish(String name, String description, List<Ingredient> ingredients) {
-        this.name = name;
-        this.description = description;
-        this.ingredients = ingredients;
-    }
-
     public Dish(String name, String description) {
         this.name = name;
         this.description = description;
+        this.ingredients = new ArrayList<>();
     }
 
     public String getName() {
@@ -45,39 +41,104 @@ public class Dish implements MenuElement, Nameable{
 
     @Override
     public double getCalories() {
-        return 0;
+
+        double calories = 0;
+
+        int n = this.ingredients.size();
+
+        for (Ingredient ingredient : this.ingredients){
+            calories += (ingredient.getQuantity() * ingredient.getCalories());
+        }
+        return calories;
     }
 
     @Override
     public double getCarbohydrates() {
-        return 0;
+        double carbohydrates = 0;
+
+        int n = this.ingredients.size();
+
+        for (Ingredient ingredient : this.ingredients){
+            carbohydrates += (ingredient.getQuantity() * ingredient.getCarbohydrates());
+        }
+        return carbohydrates;
     }
 
     @Override
     public double getFat() {
-        return 0;
+        double Fat = 0;
+
+        int n = this.ingredients.size();
+
+        for (Ingredient ingredient : this.ingredients){
+            Fat += (ingredient.getQuantity() * ingredient.getFat());
+        }
+        return Fat;
     }
 
     @Override
     public boolean hasMilk() {
-        return false;
+        boolean hasMilk = false;
+        int n = this.ingredients.size();
+
+        for (int i = 0; i < n && !hasMilk; i++) {
+            Ingredient ingredient = this.ingredients.get(i);
+            if (ingredient.hasGluten()){
+                hasMilk = true;
+
+            }
+        }
+        return hasMilk;
     }
 
     @Override
     public boolean hasNuts() {
-        return false;
+        boolean hasNuts = false;
+        int n = this.ingredients.size();
+
+        for (int i = 0; i < n && !hasNuts; i++) {
+            Ingredient ingredient = this.ingredients.get(i);
+            if (ingredient.hasGluten()){
+                hasNuts = true;
+
+            }
+        }
+        return hasNuts;
     }
 
     @Override
     public boolean hasEggs() {
-        return false;
+        boolean hasEggs = false;
+        int n = this.ingredients.size();
+
+        for (int i = 0; i < n && !hasEggs; i++) {
+            Ingredient ingredient = this.ingredients.get(i);
+            if (ingredient.hasGluten()){
+                hasEggs = true;
+
+            }
+        }
+        return hasEggs;
     }
 
     @Override
     public boolean hasGluten() {
-        return false;
+
+        boolean hasGluten = false;
+        int n = this.ingredients.size();
+
+        for (int i = 0; i < n && !hasGluten; i++) {
+            Ingredient ingredient = this.ingredients.get(i);
+            if (ingredient.hasGluten()){
+                hasGluten = true;
+
+            }
+        }
+        return hasGluten;
+        
     }
 
     public void addIngredients(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
     }
 }
