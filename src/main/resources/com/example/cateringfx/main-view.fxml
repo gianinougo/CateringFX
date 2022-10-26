@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cateringfx.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#search" prefHeight="770.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cateringfx.MainController">
    <children>
       <Label layoutX="233.0" layoutY="37.0" text="MENU DESIGNER">
          <font>
@@ -26,12 +25,12 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSearch" layoutX="123.0" layoutY="151.0" onKeyReleased="#search" AnchorPane.bottomAnchor="597.0" />
-      <Text layoutX="40.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Text" wrappingWidth="85.685546875" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
-      <CheckBox fx:id="radioMilk" layoutX="452.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Milk" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
-      <CheckBox fx:id="radioNuts" layoutX="512.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Nuts" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
-      <CheckBox fx:id="radioEgg" layoutX="577.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Egg" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
-      <CheckBox fx:id="radioGluten" layoutX="639.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="64.0" text="Gluten" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="156.0" />
+      <TextField fx:id="txtSearch" layoutX="123.0" layoutY="151.0" onKeyReleased="#search" />
+      <Text layoutX="40.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Text" wrappingWidth="85.685546875" AnchorPane.topAnchor="155.4" />
+      <CheckBox fx:id="radioMilk" layoutX="452.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Milk" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="155.4" />
+      <CheckBox fx:id="radioNuts" layoutX="512.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Nuts" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="155.4" />
+      <CheckBox fx:id="radioEgg" layoutX="577.0" layoutY="156.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="54.0" text="Egg" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="155.4" />
+      <CheckBox fx:id="radioGluten" layoutX="639.0" layoutY="154.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="64.0" text="Gluten" AnchorPane.bottomAnchor="597.0" AnchorPane.topAnchor="155.4" />
       <TableView fx:id="tbElements" layoutX="40.0" layoutY="205.0" prefHeight="275.0" prefWidth="307.0" AnchorPane.bottomAnchor="290.0" AnchorPane.topAnchor="205.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="141.0" text="Name" />
@@ -82,8 +81,20 @@
       <Text layoutX="502.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calories" AnchorPane.leftAnchor="502.0" />
       <Text layoutX="502.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carbohydrates" AnchorPane.leftAnchor="502.0" />
       <Text layoutX="502.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fat" AnchorPane.leftAnchor="502.0" />
-      <Text layoutX="644.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="644.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="644.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Label fx:id="lbCal" layoutX="629.0" layoutY="556.0" prefHeight="29.0" prefWidth="54.0" text="LbCalories" textAlignment="RIGHT">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbCarb" layoutX="627.0" layoutY="583.0" prefHeight="29.0" prefWidth="54.0" text="LbCarb" textAlignment="RIGHT">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbFat" layoutX="627.0" layoutY="608.0" prefHeight="29.0" prefWidth="54.0" text="LbFat" textAlignment="RIGHT">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

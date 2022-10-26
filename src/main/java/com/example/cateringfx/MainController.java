@@ -1,6 +1,6 @@
 package com.example.cateringfx;
 
-import com.example.cateringfx.model.MenuElement;
+import com.example.cateringfx.model.*;
 import com.example.cateringfx.model.Menu;
 import com.example.cateringfx.utils.ScreenLoader;
 import javafx.collections.FXCollections;
@@ -18,8 +18,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import static com.example.cateringfx.utils.FileUtils.loadelements;
 
@@ -42,17 +44,13 @@ public class MainController implements Initializable {
     private TableColumn<MenuElement, Double> colCarb;
     @FXML
     private TableColumn<MenuElement, Double> colFat;
-
     @FXML
     private TableView<MenuElement> tbElements;
-
     @FXML
     private DatePicker dateField;
-
     public static List<MenuElement> myListElements;
-
+    ObservableList<MenuElement> myObservableMenu;
     ObservableList<MenuElement> data;
-
     public static Menu myMenu;
     @FXML
     private TableView tbMenu;
@@ -65,14 +63,8 @@ public class MainController implements Initializable {
     @FXML
     private Label welcomeText;
 
-    ObservableList<MenuElement> myObservableMenu;
 
 
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -109,6 +101,12 @@ public class MainController implements Initializable {
         drawNutrionalValues();
     }
 
+
+    public void removeAliment(ActionEvent actionEvent) {
+        myObservableMenu.remove(myListElements.get(
+                tbMenu.getSelectionModel().getSelectedIndex()));
+    }
+
     public void newAliment(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Stage secondaryStage = ScreenLoader.loadScreen(
@@ -141,13 +139,15 @@ public class MainController implements Initializable {
 
 
     public void search(KeyEvent keyEvent) {
-        //tbElements.setItems(FXCollections.observableArrayList(myListElements.stream().filter(e ->((Nameable)e).getName().toLowerCase().contains(txtSearch.getText().toString()))));
+
+//        tbElements.setItems(FXCollections.observableArrayList(
+//                myListElements.stream().filter(e ->((Nameable)e)
+//                        .getName().toLowerCase().contains(txtSearch
+//                                .getText().toString()))));
+
+
     }
 
-    public void removeAliment(ActionEvent actionEvent) {
-        myListElements.remove(myListElements.get(
-                tbMenu.getSelectionModel().getSelectedIndex()));
-    }
 
 
 

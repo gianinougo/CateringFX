@@ -1,5 +1,7 @@
 package com.example.cateringfx.model;
 
+import java.util.Collection;
+
 public class Aliment implements MenuElement , Nameable{
 
     private String name;
@@ -90,6 +92,7 @@ public class Aliment implements MenuElement , Nameable{
     public boolean hasGluten() {
         return this.gluten;
     }
+
 
 
 }

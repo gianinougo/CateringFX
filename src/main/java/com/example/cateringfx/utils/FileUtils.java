@@ -2,7 +2,7 @@ package com.example.cateringfx.utils;
 
 import com.example.cateringfx.model.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
@@ -67,16 +67,48 @@ public class FileUtils {
         return list;
     }
 
-    public static void storeAliment(Aliment a){
-        //to store a new Aliment defined in the application.
+    public static void storeAliment(Aliment a) throws IOException {
+        PrintWriter writer = null;
+
+        {
+            writer = new PrintWriter(new BufferedWriter(
+                    new FileWriter("alimentos.txt", true)));
+            writer.println(a);
+        }
+
+        if (writer != null){
+            writer.close();
+        }
+
     }
 
-    public static  void storeDish(Dish d){
-        //to store a new Dish defined in the
-        //application.
+    public static  void storeDish(Dish d) throws IOException {
+        PrintWriter writer = null;
+
+        {
+            writer = new PrintWriter(new BufferedWriter(
+                    new FileWriter("dish.txt", true)));
+            writer.println(d);
+        }
+
+        if (writer != null){
+            writer.close();
+        }
     }
 
     public static void storeMenu(Menu m){
+        PrintWriter writer = null;
+
+        try
+        {
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd");
+         writer = new PrintWriter(m.getDate().format(formatter) + ".menu");
+         System.out.println(m.getElements());
+         m.getElements().stream().forEach(writer::println);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

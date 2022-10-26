@@ -19,5 +19,6 @@ public class NewAliment {
     private TextField txtFat;
 
     public void newAliment(ActionEvent actionEvent) {
+
     }
 }
