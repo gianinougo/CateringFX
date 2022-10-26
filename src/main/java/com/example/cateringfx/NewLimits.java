@@ -12,6 +12,7 @@ public class NewLimits {
     @FXML
     private TextField txtCalories;
 
-    public void newAliment(ActionEvent actionEvent) {
+
+    public void newLimits(ActionEvent actionEvent) {
     }
 }

@@ -72,7 +72,7 @@ public class FileUtils {
 
         {
             writer = new PrintWriter(new BufferedWriter(
-                    new FileWriter("alimentos.txt", true)));
+                    new FileWriter("aliments.txt", true)));
             writer.println(a);
         }
 

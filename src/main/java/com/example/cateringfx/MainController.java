@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +29,14 @@ import static com.example.cateringfx.utils.FileUtils.loadelements;
 public class MainController implements Initializable {
 
 
+    @FXML
+    private CheckBox checkGluten;
+    @FXML
+    private CheckBox checkEgg;
+    @FXML
+    private CheckBox checkNuts;
+    @FXML
+    private CheckBox checkMilk;
     @FXML
     private CheckBox radioMilk;
     @FXML
@@ -93,6 +102,12 @@ public class MainController implements Initializable {
 
         tbMenu.setItems(myObservableMenu);
         tbElements.setPlaceholder(new Label("No items to show"));
+
+        checkMilk.setDisable(true);
+        checkEgg.setDisable(true);
+        checkNuts.setDisable(true);
+        checkGluten.setDisable(true);
+
     }
 
 
@@ -148,15 +163,34 @@ public class MainController implements Initializable {
 
     }
 
-
-
-
-
     public void saveMenu(ActionEvent actionEvent) {
         //if (myMenu.getElements().size)() > 0  && myMenu)
     }
 
 
+    public void Selected(MouseEvent mouseEvent) {
 
-
+        if (radioEgg.isSelected()){
+            radioMilk.setDisable(true);
+            radioNuts.setDisable(true);
+            radioGluten.setDisable(true);
+        } else if (radioGluten.isSelected()) {
+            radioMilk.setDisable(true);
+            radioNuts.setDisable(true);
+            radioEgg.setDisable(true);
+        } else if (radioMilk.isSelected()) {
+            radioGluten.setDisable(true);
+            radioNuts.setDisable(true);
+            radioEgg.setDisable(true);
+        } else if (radioNuts.isSelected()) {
+            radioMilk.setDisable(true);
+            radioEgg.setDisable(true);
+            radioGluten.setDisable(true);
+        } else {
+            radioMilk.setDisable(false);
+            radioNuts.setDisable(false);
+            radioGluten.setDisable(false);
+            radioEgg.setDisable(false);
+        }
+    }
 }

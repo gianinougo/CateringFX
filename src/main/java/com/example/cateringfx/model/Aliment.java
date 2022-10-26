@@ -13,6 +13,9 @@ public class Aliment implements MenuElement , Nameable{
     private boolean nuts;
     private boolean milk;
     private boolean eggs;
+
+
+
     private boolean gluten;
 
     public Aliment(String name, String description, String frecuency,
@@ -28,10 +31,6 @@ public class Aliment implements MenuElement , Nameable{
         this.milk = milk;
         this.eggs = eggs;
         this.gluten = gluten;
-    }
-
-    public Aliment() {
-
     }
 
     public String getName() {
@@ -93,6 +92,19 @@ public class Aliment implements MenuElement , Nameable{
         return this.gluten;
     }
 
-
+    @Override
+    public String toString() {
+        return  name
+                + ";" +description
+                + ";" +frecuency
+                + ";" +gluten
+                + ";" +milk
+                + ";" +nuts
+                + ";" +eggs
+                + ";" +calories
+                + ";" + carbohydrates
+                + ";" +fat
+                ;
+    }
 
 }
