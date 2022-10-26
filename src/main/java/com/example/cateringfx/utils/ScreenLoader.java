@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ScreenLoader {
 
-    public static void loadScreen(String viewPath, Stage stage) throws IOException {
+    public static Stage loadScreen(String viewPath, Stage stage) throws IOException {
         Parent view1 = FXMLLoader.load(ScreenLoader.class.getResource(viewPath));
         Scene viewScene = new Scene(view1);
         Stage secondaryStage = new Stage();
@@ -19,6 +19,7 @@ public class ScreenLoader {
         stage.hide();
         stage.setScene(viewScene);
         stage.show();
+        return secondaryStage;
     }
 
 }

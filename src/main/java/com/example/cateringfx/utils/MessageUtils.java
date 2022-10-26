@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 
 public class MessageUtils {
 
-    public static void showError(String message)
+    public static void showError(String message, String s)
     {
         Alert dialog = new Alert(Alert.AlertType.ERROR);
         dialog.setHeaderText("Error");

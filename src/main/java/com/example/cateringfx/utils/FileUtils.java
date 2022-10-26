@@ -3,18 +3,15 @@ package com.example.cateringfx.utils;
 import com.example.cateringfx.model.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FilUtils {
+public class FileUtils {
 
     public static DateTimeFormatter departureFormatter =
             DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm");
