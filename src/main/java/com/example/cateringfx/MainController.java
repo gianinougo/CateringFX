@@ -1,9 +1,7 @@
 package com.example.cateringfx;
 
 import com.example.cateringfx.model.MenuElement;
-import com.example.cateringfx.model.Nameable;
-import com.example.cateringfx.utils.FileUtils;
-import com.example.cateringfx.utils.MessageUtils;
+import com.example.cateringfx.model.Menu;
 import com.example.cateringfx.utils.ScreenLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,8 +65,6 @@ public class MainController implements Initializable {
     @FXML
     private Label welcomeText;
 
-
-
     ObservableList<MenuElement> myObservableMenu;
 
 
@@ -88,20 +84,20 @@ public class MainController implements Initializable {
         myListElements = loadelements();
         data = FXCollections.observableArrayList(myListElements);
 
-        this.colName.setCellValueFactory(new PropertyValueFactory("name"));
-        this.colCal.setCellValueFactory(new PropertyValueFactory("Calories"));
-        this.colCarb.setCellValueFactory(new PropertyValueFactory("Carbohydrates"));
-        this.colFat.setCellValueFactory(new PropertyValueFactory("Fat"));
+        colName.setCellValueFactory(new PropertyValueFactory("name"));
+        colCal.setCellValueFactory(new PropertyValueFactory("Calories"));
+        colCarb.setCellValueFactory(new PropertyValueFactory("Carbohydrates"));
+        colFat.setCellValueFactory(new PropertyValueFactory("Fat"));
 
         tbElements.setItems(data);
         tbElements.setPlaceholder(new Label("No ites to show"));
         myObservableMenu= FXCollections.observableArrayList(new ArrayList<MenuElement>());
-        this.colName2.setCellValueFactory(new PropertyValueFactory("name"));
-        this.colDescription.setCellValueFactory(new PropertyValueFactory("description"));
+        colName2.setCellValueFactory(new PropertyValueFactory("name"));
+        colDescription.setCellValueFactory(new PropertyValueFactory("description"));
         dateField.setValue(LocalDate.now());
 
-        //myMenu = new Menu(dateField.getValue());
-        //myMenu.setElements(myObservableMenu);
+        myMenu = new Menu(dateField.getValue());
+        myMenu.setElements(myObservableMenu);
 
         tbMenu.setItems(myObservableMenu);
         tbElements.setPlaceholder(new Label("No items to show"));
@@ -131,14 +127,21 @@ public class MainController implements Initializable {
         secondaryStage.show();
     }
 
+    public void setLimits(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage secondaryStage = ScreenLoader.loadScreen(
+                "new-limits.fxml", stage
+        );
+        secondaryStage.setOnCloseRequest(e -> fillElements());
+        secondaryStage.show();
+    }
+
     private void drawNutrionalValues() {
     }
 
+
     public void search(KeyEvent keyEvent) {
-        tbElements.setItems(FXCollections.observableArrayList(
-                myListElements.stream().filter(e ->((Nameable) e)
-                                .getName().toLowerCase()
-                                .contains(txtSearch.getText().toString()))));
+        //tbElements.setItems(FXCollections.observableArrayList(myListElements.stream().filter(e ->((Nameable)e).getName().toLowerCase().contains(txtSearch.getText().toString()))));
     }
 
     public void removeAliment(ActionEvent actionEvent) {
@@ -153,8 +156,7 @@ public class MainController implements Initializable {
         //if (myMenu.getElements().size)() > 0  && myMenu)
     }
 
-    public void setLimits(ActionEvent actionEvent) {
-    }
+
 
 
 }
