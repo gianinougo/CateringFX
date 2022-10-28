@@ -30,6 +30,12 @@ public class MainController implements Initializable {
 
 
     @FXML
+    private Label lbCal;
+    @FXML
+    private Label lbCarb;
+    @FXML
+    private Label lbFat;
+    @FXML
     private CheckBox checkGluten;
     @FXML
     private CheckBox checkEgg;
@@ -113,7 +119,6 @@ public class MainController implements Initializable {
 
     public void addAliment(ActionEvent actionEvent) {
         myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
-        drawNutrionalValues();
     }
 
 
@@ -149,8 +154,6 @@ public class MainController implements Initializable {
         secondaryStage.show();
     }
 
-    private void drawNutrionalValues() {
-    }
 
 
     public void search(KeyEvent keyEvent) {

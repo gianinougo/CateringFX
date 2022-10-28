@@ -12,6 +12,12 @@ import static com.example.cateringfx.utils.FileUtils.storeAliment;
 import static com.example.cateringfx.utils.MessageUtils.showError;
 import static com.example.cateringfx.utils.MessageUtils.showMessage;
 
+/**
+ * Controller of New aliment
+ * @author Ugo Gianino
+ * @version 1.0
+ */
+
 public class NewAliment {
     @FXML
     private CheckBox checkMilk;
@@ -34,6 +40,11 @@ public class NewAliment {
     @FXML
     private TextField txtFat;
 
+    /**
+     * Method to save the new aliment
+     * @param actionEvent
+     * @throws IOException
+     */
     public void newAliment(ActionEvent actionEvent) throws IOException {
 
         if (txtName.getText().equals("") ||

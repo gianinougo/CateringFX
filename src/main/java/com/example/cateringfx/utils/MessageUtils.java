@@ -2,7 +2,18 @@ package com.example.cateringfx.utils;
 
 import javafx.scene.control.Alert;
 
+/**
+ * Class to show messages.
+ * @author Ugo Gianino
+ * @version 1.0
+ */
+
 public class MessageUtils {
+
+    /**
+     * Shows an error message.
+     * @param message Error message
+     */
 
     public static void showError(String message, String s)
     {

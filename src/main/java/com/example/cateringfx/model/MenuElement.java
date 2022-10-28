@@ -1,5 +1,10 @@
 package com.example.cateringfx.model;
 
+/**
+ * Interface MenuElent
+ * @author Ugo Gianino
+ * @version 1.0
+ */
 public interface MenuElement {
 
     public double getCalories();

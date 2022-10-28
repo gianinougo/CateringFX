@@ -11,15 +11,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Class with Util methods
+ * @author Ugo Gianino
+ * @version 1.0
+ */
 public class FileUtils {
+
+
 
     public static DateTimeFormatter departureFormatter =
             DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm");
 
-
     public static DateTimeFormatter timeFormatter =
             DateTimeFormatter.ofPattern("H:mm");
 
+    /**
+     * Method to read a file and return a list of strings
+     * @return loadElemnts
+     */
     public static List<MenuElement> loadelements() {
         List<MenuElement> list = new ArrayList<>();
 
@@ -67,6 +77,11 @@ public class FileUtils {
         return list;
     }
 
+    /**
+     * Method to write a file
+     * @param a
+     * @throws IOException
+     */
     public static void storeAliment(Aliment a) throws IOException {
         PrintWriter writer = null;
 
@@ -82,6 +97,12 @@ public class FileUtils {
 
     }
 
+    /**
+     * Method to write a file
+     * @param d
+     * @throws IOException
+     */
+
     public static  void storeDish(Dish d) throws IOException {
         PrintWriter writer = null;
 
@@ -96,6 +117,10 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Method to write a file
+     * @param m
+     */
     public static void storeMenu(Menu m){
         PrintWriter writer = null;
 
