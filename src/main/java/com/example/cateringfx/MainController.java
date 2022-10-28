@@ -26,6 +26,12 @@ import java.util.stream.Collectors;
 
 import static com.example.cateringfx.utils.FileUtils.loadelements;
 
+
+/**
+ * Manages the main view.
+ * @author Ugo Gianino
+ * @version 1.0
+ */
 public class MainController implements Initializable {
 
 
@@ -79,13 +85,19 @@ public class MainController implements Initializable {
     private Label welcomeText;
 
 
-
+    /**
+     * Initializes the FXML view.
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         fillElements();
     }
+
+    /**
+     * Fills the table with the elements.
+     */
 
     private void fillElements() {
         myListElements = loadelements();
@@ -117,16 +129,29 @@ public class MainController implements Initializable {
     }
 
 
+    /**
+     * Adds a new element to the table.
+     * @param actionEvent
+     */
     public void addAliment(ActionEvent actionEvent) {
         myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
     }
 
 
+    /**
+     * Removes an element from the table.
+     * @param actionEvent
+     */
     public void removeAliment(ActionEvent actionEvent) {
         myObservableMenu.remove(myListElements.get(
                 tbMenu.getSelectionModel().getSelectedIndex()));
     }
 
+    /**
+     * Saves the newAliment.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void newAliment(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Stage secondaryStage = ScreenLoader.loadScreen(
@@ -136,6 +161,11 @@ public class MainController implements Initializable {
         secondaryStage.show();
     }
 
+    /**
+     * Saves the newDish.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void newDish(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Stage secondaryStage = ScreenLoader.loadScreen(
@@ -145,6 +175,11 @@ public class MainController implements Initializable {
         secondaryStage.show();
     }
 
+    /**
+     * Saves the setLimits.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void setLimits(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Stage secondaryStage = ScreenLoader.loadScreen(
@@ -155,7 +190,10 @@ public class MainController implements Initializable {
     }
 
 
-
+    /**
+     * Saves the search.
+     * @param keyEvent
+     */
     public void search(KeyEvent keyEvent) {
 
 //        tbElements.setItems(FXCollections.observableArrayList(
@@ -166,11 +204,19 @@ public class MainController implements Initializable {
 
     }
 
+    /**
+     * Saves the saveMenu.
+     * @param actionEvent
+     */
     public void saveMenu(ActionEvent actionEvent) {
         //if (myMenu.getElements().size)() > 0  && myMenu)
     }
 
 
+    /**
+     * Method for select only on echeckbox
+     * @param mouseEvent
+     */
     public void Selected(MouseEvent mouseEvent) {
 
         if (radioEgg.isSelected()){

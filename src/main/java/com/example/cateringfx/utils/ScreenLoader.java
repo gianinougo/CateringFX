@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Class for Load Screens
+ * @author Ugo Gianino
+ */
 public class ScreenLoader {
 
     public static Stage loadScreen(String path, Stage stage) throws IOException {
