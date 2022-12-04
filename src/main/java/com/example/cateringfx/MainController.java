@@ -138,8 +138,13 @@ public class MainController implements Initializable {
      * @param actionEvent
      */
     public void addAliment(ActionEvent actionEvent) {
-        myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
-        setUpNutritionalLimits();
+        if (tbElements.getSelectionModel().getSelectedItem() != null) {
+            myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
+            setUpNutritionalLimits();
+        }
+        else {
+            MessageUtils.showMessage("Information", "You must select a menu to delete from de list.");
+        }
     }
 
 
@@ -148,10 +153,14 @@ public class MainController implements Initializable {
      * @param actionEvent
      */
     public void removeAliment(ActionEvent actionEvent) {
-        myObservableMenu.remove(myListElements.get(
-                tbMenu.getSelectionModel().getSelectedIndex()));
-
-        setUpNutritionalLimits();
+        if (tbElements.getSelectionModel().getSelectedItem() != null){
+            myObservableMenu.remove(myListElements.get(
+                    tbMenu.getSelectionModel().getSelectedIndex()));
+            setUpNutritionalLimits();
+        }
+        else {
+            MessageUtils.showMessage("Information", "You must select a menu to delete from de list.");
+        }
     }
 
     /**

@@ -29,9 +29,11 @@ public class MessageUtils {
 
     /**
      * Shows an information message.
+     *
      * @param message Information message
+     * @param s
      */
-    public static void showMessage(String message)
+    public static void showMessage(String message, String s)
     {
         Alert dialog = new Alert(Alert.AlertType.INFORMATION);
         dialog.setHeaderText("Information");

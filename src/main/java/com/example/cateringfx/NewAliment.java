@@ -83,7 +83,7 @@ public class NewAliment {
             checkNuts.setSelected(false);
 
 
-            showMessage("Save ok");
+            showMessage("Save ok", "You must select a menu to delete from de list.");
         }
 
 
