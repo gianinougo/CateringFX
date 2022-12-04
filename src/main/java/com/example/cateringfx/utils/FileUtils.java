@@ -136,6 +136,21 @@ public class FileUtils {
         }
     }
 
+    public static void storeMenu2(Menu m){
+        final String MENU_FILENAME = m.getDate()+".menu.txt";
+        try(PrintWriter pw = new PrintWriter(
+                new FileWriter(
+                        Paths.get(MENU_FILENAME).toAbsolutePath().toString(),
+                        true)))
+        {
+            pw.println(m);
+
+        }catch(IOException e1){
+            System.out.println("An error occurred while write the Menu.");
+            e1.printStackTrace();
+        }
+    }
+
 
 
 }

@@ -77,14 +77,20 @@ public class Dish implements MenuElement, Nameable{
     @Override
     public double getCalories() {
 
-        double calories = 0;
+/*        double calories = 0;
 
         int n = this.ingredients.size();
 
         for (Ingredient ingredient : this.ingredients){
             calories += (ingredient.getQuantity() * ingredient.getCalories());
         }
-        return calories;
+        return calories;*/
+
+        return ingredients.stream().mapToDouble(p-> p.getAliment().getCalories()).sum();
+
+        //Stream
+
+
     }
 
     /**
@@ -93,14 +99,7 @@ public class Dish implements MenuElement, Nameable{
      */
     @Override
     public double getCarbohydrates() {
-        double carbohydrates = 0;
-
-        int n = this.ingredients.size();
-
-        for (Ingredient ingredient : this.ingredients){
-            carbohydrates += (ingredient.getQuantity() * ingredient.getCarbohydrates());
-        }
-        return carbohydrates;
+        return ingredients.stream().mapToDouble(p-> p.getAliment().getCarbohydrates()).sum();
     }
 
     /**
@@ -109,14 +108,7 @@ public class Dish implements MenuElement, Nameable{
      */
     @Override
     public double getFat() {
-        double Fat = 0;
-
-        int n = this.ingredients.size();
-
-        for (Ingredient ingredient : this.ingredients){
-            Fat += (ingredient.getQuantity() * ingredient.getFat());
-        }
-        return Fat;
+        return ingredients.stream().mapToDouble(p-> p.getAliment().getFat()).sum();
     }
 
     /**
@@ -125,17 +117,7 @@ public class Dish implements MenuElement, Nameable{
      */
     @Override
     public boolean hasMilk() {
-        boolean hasMilk = false;
-        int n = this.ingredients.size();
-
-        for (int i = 0; i < n && !hasMilk; i++) {
-            Ingredient ingredient = this.ingredients.get(i);
-            if (ingredient.hasGluten()){
-                hasMilk = true;
-
-            }
-        }
-        return hasMilk;
+        return ingredients.stream().anyMatch(p-> p.getAliment().hasMilk());
     }
 
     /**
@@ -144,17 +126,7 @@ public class Dish implements MenuElement, Nameable{
      */
     @Override
     public boolean hasNuts() {
-        boolean hasNuts = false;
-        int n = this.ingredients.size();
-
-        for (int i = 0; i < n && !hasNuts; i++) {
-            Ingredient ingredient = this.ingredients.get(i);
-            if (ingredient.hasGluten()){
-                hasNuts = true;
-
-            }
-        }
-        return hasNuts;
+        return ingredients.stream().anyMatch(p-> p.getAliment().hasNuts());
     }
 
     /**
@@ -163,17 +135,7 @@ public class Dish implements MenuElement, Nameable{
      */
     @Override
     public boolean hasEggs() {
-        boolean hasEggs = false;
-        int n = this.ingredients.size();
-
-        for (int i = 0; i < n && !hasEggs; i++) {
-            Ingredient ingredient = this.ingredients.get(i);
-            if (ingredient.hasGluten()){
-                hasEggs = true;
-
-            }
-        }
-        return hasEggs;
+        return ingredients.stream().anyMatch(p-> p.getAliment().hasEggs());
     }
 
     /**
@@ -183,17 +145,7 @@ public class Dish implements MenuElement, Nameable{
     @Override
     public boolean hasGluten() {
 
-        boolean hasGluten = false;
-        int n = this.ingredients.size();
-
-        for (int i = 0; i < n && !hasGluten; i++) {
-            Ingredient ingredient = this.ingredients.get(i);
-            if (ingredient.hasGluten()){
-                hasGluten = true;
-
-            }
-        }
-        return hasGluten;
+        return ingredients.stream().anyMatch(p-> p.getAliment().hasGluten());
         
     }
 
@@ -203,5 +155,14 @@ public class Dish implements MenuElement, Nameable{
      */
     public void addIngredients(Ingredient ingredient) {
         this.ingredients.add(ingredient);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder(getName() + ";" + getDescription()+";");
+        for (Ingredient ingredient: ingredients) {
+            result.append(ingredient.toString());
+        }
+        return result.toString();
     }
 }

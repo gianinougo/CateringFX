@@ -2,6 +2,8 @@ package com.example.cateringfx;
 
 import com.example.cateringfx.model.*;
 import com.example.cateringfx.model.Menu;
+import com.example.cateringfx.utils.FileUtils;
+import com.example.cateringfx.utils.MessageUtils;
 import com.example.cateringfx.utils.ScreenLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +27,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import static com.example.cateringfx.NewLimits.*;
 import static com.example.cateringfx.utils.FileUtils.loadelements;
 
 
@@ -58,13 +62,13 @@ public class MainController implements Initializable {
     @FXML
     private CheckBox radioGluten;
     @FXML
-    private TableColumn<MenuElement, Double> colName;
+    private TableColumn<MenuElement, Aliment> colName;
     @FXML
-    private TableColumn<MenuElement, Double> colCal;
+    private TableColumn<MenuElement, Aliment> colCal;
     @FXML
-    private TableColumn<MenuElement, Double> colCarb;
+    private TableColumn<MenuElement, Aliment> colCarb;
     @FXML
-    private TableColumn<MenuElement, Double> colFat;
+    private TableColumn<MenuElement, Aliment> colFat;
     @FXML
     private TableView<MenuElement> tbElements;
     @FXML
@@ -135,6 +139,7 @@ public class MainController implements Initializable {
      */
     public void addAliment(ActionEvent actionEvent) {
         myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
+        setUpNutritionalLimits();
     }
 
 
@@ -145,6 +150,8 @@ public class MainController implements Initializable {
     public void removeAliment(ActionEvent actionEvent) {
         myObservableMenu.remove(myListElements.get(
                 tbMenu.getSelectionModel().getSelectedIndex()));
+
+        setUpNutritionalLimits();
     }
 
     /**
@@ -196,10 +203,10 @@ public class MainController implements Initializable {
      */
     public void search(KeyEvent keyEvent) {
 
-//        tbElements.setItems(FXCollections.observableArrayList(
-//                myListElements.stream().filter(e ->((Nameable)e)
-//                        .getName().toLowerCase().contains(txtSearch
-//                                .getText().toString()))));
+        tbElements.setItems(FXCollections.observableArrayList(
+                (MenuElement) myListElements.stream().filter(e ->((Nameable)e)
+                        .getName().toLowerCase().contains(txtSearch
+                                .getText().toString()))));
 
 
     }
@@ -209,7 +216,12 @@ public class MainController implements Initializable {
      * @param actionEvent
      */
     public void saveMenu(ActionEvent actionEvent) {
-        //if (myMenu.getElements().size)() > 0  && myMenu)
+        if(myListElements.size() > 0 && myMenu != null){
+            boolean result = MessageUtils.showConfirmation("Confirmation", "Do you want to save this menu?");
+            if(result)
+                FileUtils.storeMenu(myMenu);
+
+        }else  MessageUtils.showError("Error", "No item has been selected for the menu");
     }
 
 
@@ -241,5 +253,30 @@ public class MainController implements Initializable {
             radioGluten.setDisable(false);
             radioEgg.setDisable(false);
         }
+    }
+
+    private void setUpNutritionalLimits(){
+
+        if(tbElements.getSelectionModel().getSelectedItem() != null){
+            double calories = myListElements.stream().mapToDouble(MenuElement::getCalories).sum();
+            lbCal.setText(String.valueOf(calories));
+            setUpLimitColours(lbCal, calories, limitCalories);
+
+            double carbohydrates = myListElements.stream().mapToDouble(MenuElement::getCarbohydrates).sum();
+            lbCarb.setText(String.valueOf(carbohydrates));
+            setUpLimitColours(lbCarb, carbohydrates, limitCarbohydrates);
+
+            double fat = myListElements.stream().mapToDouble(MenuElement::getFat).sum();
+            lbFat.setText(String.valueOf(fat));
+            setUpLimitColours(lbFat, fat, limitFats);
+
+        }else
+            MessageUtils.showError("Error", "You must select an item to add to the menu.");
+    }
+
+    private void setUpLimitColours(Label label, double itemValue, double limit){
+        if(itemValue> limit)
+            label.setTextFill(Color.RED);
+        else label.setTextFill(Color.BLACK);
     }
 }
