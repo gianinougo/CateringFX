@@ -45,6 +45,9 @@ public class Ingredient implements MenuElement{
         this.aliment = aliment;
     }
 
+
+
+
     /**
      * Get the calories
      * @return calories

@@ -73,7 +73,8 @@ public class MainController implements Initializable {
     private TableView<MenuElement> tbElements;
     @FXML
     private DatePicker dateField;
-    public static List<MenuElement> myListElements;
+    public List<MenuElement> myListElements;
+    public List<Nameable> myListElements2;
     ObservableList<MenuElement> myObservableMenu;
     ObservableList<MenuElement> data;
     public static Menu myMenu;
@@ -139,7 +140,11 @@ public class MainController implements Initializable {
      */
     public void addAliment(ActionEvent actionEvent) {
         if (tbElements.getSelectionModel().getSelectedItem() != null) {
-            myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
+            //myObservableMenu.add(tbElements.getItems().get(tbElements.getSelectionModel().getSelectedIndex()));
+
+            tbElements.setItems(FXCollections.observableArrayList(myListElements));
+
+            myMenu.addNewElement(tbElements.getSelectionModel().getSelectedItem());
             setUpNutritionalLimits();
         }
         else {
@@ -156,6 +161,9 @@ public class MainController implements Initializable {
         if (tbElements.getSelectionModel().getSelectedItem() != null){
             myObservableMenu.remove(myListElements.get(
                     tbMenu.getSelectionModel().getSelectedIndex()));
+
+            tbElements.setItems(FXCollections.observableArrayList(myListElements));
+            myMenu.getElements().remove(tbElements.getSelectionModel().getSelectedItem());
             setUpNutritionalLimits();
         }
         else {
@@ -211,11 +219,9 @@ public class MainController implements Initializable {
      * @param keyEvent
      */
     public void search(KeyEvent keyEvent) {
-
         tbElements.setItems(FXCollections.observableArrayList(
-                (MenuElement) myListElements.stream().filter(e ->((Nameable)e)
-                        .getName().toLowerCase().contains(txtSearch
-                                .getText().toString()))));
+                myListElements).filtered(e -> ((Nameable)e).getName().toLowerCase().contains(txtSearch
+                       .getText().toString())));
 
 
     }
@@ -265,13 +271,13 @@ public class MainController implements Initializable {
     }
 
     private void setUpNutritionalLimits(){
-
         if(tbElements.getSelectionModel().getSelectedItem() != null){
+
             double calories = myListElements.stream().mapToDouble(MenuElement::getCalories).sum();
             lbCal.setText(String.valueOf(calories));
             setUpLimitColours(lbCal, calories, limitCalories);
 
-            double carbohydrates = myListElements.stream().mapToDouble(MenuElement::getCarbohydrates).sum();
+            double carbohydrates = myListElements.stream().mapToDouble(MenuElement::getCarbohydrates).sum() ;
             lbCarb.setText(String.valueOf(carbohydrates));
             setUpLimitColours(lbCarb, carbohydrates, limitCarbohydrates);
 

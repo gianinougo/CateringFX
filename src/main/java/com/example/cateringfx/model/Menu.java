@@ -58,6 +58,11 @@ public class Menu {
     public void setElements(List<MenuElement> elements) {
         this.elements = elements;
     }
+
+    public void addNewElement(MenuElement newMenuElement){
+        elements.add(newMenuElement);
+    }
+
 }
 
 
