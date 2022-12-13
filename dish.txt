@@ -1,1 +1,0 @@
-jamon;rico rico;com.example.cateringfx.model.Ingredient@6d9bcdc9

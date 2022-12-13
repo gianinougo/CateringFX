@@ -108,7 +108,7 @@ public class FileUtils {
 
         {
             writer = new PrintWriter(new BufferedWriter(
-                    new FileWriter("dish.txt", true)));
+                    new FileWriter("dishes.txt", true)));
             writer.println(d);
         }
 

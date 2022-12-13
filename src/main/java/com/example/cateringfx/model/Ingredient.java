@@ -4,110 +4,125 @@ package com.example.cateringfx.model;
  * Class Ingredients
  * @author Ugo Gianino
  */
-public class Ingredient implements MenuElement{
+public class Ingredient {
+
+    /**
+     * The ingredient's <b>quantity</b>
+     */
     private double quantity;
+    /**
+     * The <b>{@link Aliment}</b> data corresponding to the ingredient
+     *
+     * @see Aliment
+     */
     private Aliment aliment;
 
+    /**
+     * Creates an Ingredient which its attributes.
+     *
+     * @param quantity The ingredient's quantity.
+     * @param aliment  The ingredient's aliment.
+     * @see Aliment
+     */
     public Ingredient(double quantity, Aliment aliment) {
         this.quantity = quantity;
         this.aliment = aliment;
     }
 
     /**
-     * Get the quantity
-     * @return the quantity
+     * Gets the ingredient's quantity.
+     *
+     * @return A double representing the ingredient's quantity.
      */
     public double getQuantity() {
         return quantity;
     }
 
     /**
-     * Set the quantity
-     * @param quantity
+     * Sets the ingredient's quantity.
+     *
+     * @param quantity A double containing the ingredient's quantity.
      */
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
     /**
-     * Get the aliment
-     * @return aliment
+     * Gets an aliment's  ingredient.
+     *
+     * @return An Aliment representing the ingredient's aliment.
+     * @see Aliment
      */
     public Aliment getAliment() {
         return aliment;
     }
 
     /**
-     * Set the aliment
-     * @param aliment
+     * Gets the aliment's name.
+     *
+     * @return A String corresponding to the aliment's name.
+     * @see Aliment
+     */
+    public String getName() {
+        return aliment.getName();
+    }
+
+    /**
+     * Gets the aliment's description.
+     *
+     * @return A String corresponding to the aliment's description.
+     * @see Aliment
+     */
+    public String getDescription() {
+        return aliment.getDescription();
+    }
+
+    /**
+     * Sets the ingredient's aliment.
+     *
+     * @param aliment An Aliment containing the aliment data.
+     * @see Aliment
      */
     public void setAliment(Aliment aliment) {
         this.aliment = aliment;
     }
 
-
-
-
     /**
-     * Get the calories
-     * @return calories
+     * Gets the aliment's calories.
+     *
+     * @return double representing the total of the aliment's calories.
      */
-    @Override
     public double getCalories() {
-        return aliment.getCalories();
+        return aliment.getCalories() * quantity;
     }
 
     /**
-     * Get the getCarbohydrates
-     * @return Carbohydrates
+     * Gets the aliment's carbohydrates.
+     *
+     * @return double representing the total of the aliment's carbohydrates.
      */
-    @Override
     public double getCarbohydrates() {
-        return aliment.getCarbohydrates();
+        return aliment.getCarbohydrates() * quantity;
     }
 
     /**
-     * Get the Fat
-     * @return getFat
+     * Gets the aliment's fat
+     *
+     * @return double representing the total of the aliment's fats.
      */
-    @Override
     public double getFat() {
-        return aliment.getFat();
+        return aliment.getFat() * quantity;
     }
 
-    /**
-     * Get the Milk
-     * @return hasMilk
-     */
-    @Override
-    public boolean hasMilk() {
-        return aliment.hasMilk();
-    }
 
     /**
-     * Get the Nuts
-     * @return nuts
+     * Gets all the Ingredient's attributes.
+     *
+     * @return A String containing all the ingredient's attributes.
+     * @see Aliment
      */
     @Override
-    public boolean hasNuts() {
-        return aliment.hasNuts();
-    }
-
-    /**
-     * Get the eggs
-     * @return eggs
-     */
-    @Override
-    public boolean hasEggs() {
-        return aliment.hasEggs();
-    }
-
-    /**
-     * Get the gluten
-     * @return gluten
-     */
-    @Override
-    public boolean hasGluten() {
-        return aliment.hasGluten();
+    public String toString() {
+        return quantity + ";" + aliment.toString();
     }
 }

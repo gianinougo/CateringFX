@@ -1,5 +1,9 @@
 package com.example.cateringfx.model;
 
+/*
+Cambiar for por stream;
+hacer parte optavia new dish;
+ */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,6 +160,9 @@ public class Dish implements MenuElement, Nameable{
     public void addIngredients(Ingredient ingredient) {
         this.ingredients.add(ingredient);
     }
+
+
+
 
     @Override
     public String toString() {
