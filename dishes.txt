@@ -1,1 +1,2 @@
 pepito ;asado;1.0;aaa;dayli;dayli;false;false;true;false;11.0;11.0;11.0
+pollo asado;pollo;1.0;aaa;aa;diaria;false;false;true;true;111.0;1.0;10.0

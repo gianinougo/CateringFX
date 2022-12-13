@@ -272,15 +272,15 @@ public class MainController implements Initializable {
     private void setUpNutritionalLimits(){
         if(tbElements.getSelectionModel().getSelectedItem() != null){
 
-            double calories = myListElements.stream().mapToDouble(MenuElement::getCalories).sum();
+            double calories = myMenu.getCalories();
             lbCal.setText(String.valueOf(calories));
             setUpLimitColours(lbCal, calories, limitCalories);
 
-            double carbohydrates = myListElements.stream().mapToDouble(MenuElement::getCarbohydrates).sum() ;
+            double carbohydrates = myMenu.getCarbohydrates();
             lbCarb.setText(String.valueOf(carbohydrates));
             setUpLimitColours(lbCarb, carbohydrates, limitCarbohydrates);
 
-            double fat = myListElements.stream().mapToDouble(MenuElement::getFat).sum();
+            double fat = myMenu.getFat();
             lbFat.setText(String.valueOf(fat));
             setUpLimitColours(lbFat, fat, limitFats);
 
