@@ -6,15 +6,9 @@ package com.example.cateringfx.model;
  */
 public class Ingredient {
 
-    /**
-     * The ingredient's <b>quantity</b>
-     */
+
     private double quantity;
-    /**
-     * The <b>{@link Aliment}</b> data corresponding to the ingredient
-     *
-     * @see Aliment
-     */
+
     private Aliment aliment;
 
     /**
